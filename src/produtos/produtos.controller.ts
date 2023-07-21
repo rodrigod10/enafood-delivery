@@ -1,28 +1,38 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { CriarProdutoDto, EditarProdutoDto } from "./produto.dto";
-import { ProdutosService } from "./produtos.service";
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { ProdutoDTO } from './produto.dto';
+import { Produto } from './produtos.schema';
+import { ProdutosService } from './produtos.service';
 
 @Controller('produtos')
 export class ProdutosController {
   constructor(private readonly produtosService: ProdutosService) { }
 
   @Get()
-  async obterProdutos() {
-    return await this.produtosService.obterTodos();
+  async obterTodos(): Promise<Produto[]> {
+    return this.produtosService.obterTodos();
+  }
+
+  @Get(':id')
+  async obterPorId(@Param('id') id: string): Promise<Produto> {
+    const produto = await this.produtosService.obterPorId(id);
+    if (!produto) {
+      throw new NotFoundException('Produto não encontrado');
+    }
+    return produto;
   }
 
   @Post()
-  async adicionarProduto(@Body() criarProdutoDto: CriarProdutoDto) {
-    return await this.produtosService.adicionar(criarProdutoDto);
+  async adicionar(@Body() produtoDTO: ProdutoDTO): Promise<Produto> {
+    return this.produtosService.adicionar(produtoDTO);
   }
 
   @Put(':id')
-  async editarProduto(@Param('id') id: string, @Body() editarProdutoDto: EditarProdutoDto) {
-    return await this.produtosService.editar(id, editarProdutoDto);
+  async editar(@Param('id') id: string, @Body() produtoDTO: ProdutoDTO): Promise<Produto> {
+    return this.produtosService.editar(id, produtoDTO);
   }
 
   @Delete(':id')
-  async removerProduto(@Param('id') id: string) {
-    return await this.produtosService.remover(id);
+  async remover(@Param('id') id: string): Promise<void> {
+    return this.produtosService.remover(id);
   }
 }

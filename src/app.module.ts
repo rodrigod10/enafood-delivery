@@ -29,4 +29,3 @@ export class AppModule {
     SwaggerModule.setup('api', app, document);
   }
 }
-

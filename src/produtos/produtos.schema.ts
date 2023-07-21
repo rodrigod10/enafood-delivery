@@ -1,18 +1,21 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema, model } from 'mongoose';
+
+export interface Produto {
+  id: string;
+  nome: string;
+  preco: number;
+  descricao: string;
+  dataCriacao: Date;
+}
 
 export type ProdutoDocument = Produto & Document;
 
-@Schema()
-export class Produto {
-  @Prop()
-  nome: string;
+const produtoSchema = new Schema<ProdutoDocument>({
+  id: { type: String, required: true, unique: true },
+  nome: { type: String, required: true },
+  preco: { type: Number, required: true },
+  descricao: { type: String, required: true },
+  dataCriacao: { type: Date, default: Date.now },
+}, { collection: 'produtos' });
 
-  @Prop()
-  descricao: string;
-
-  @Prop()
-  preco: number;
-}
-
-export const ProdutoSchema = SchemaFactory.createForClass(Produto);
+export const ProdutoModel = model<ProdutoDocument>('Produto', produtoSchema);

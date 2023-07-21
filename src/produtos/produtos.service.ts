@@ -20,8 +20,7 @@ export class ProdutosService {
   }
 
   async adicionar(produto: Produto): Promise<Produto> {
-    const novoProduto = new this.produtoModel(produto);
-    return novoProduto.save();
+    return this.produtoModel.create(produto);
   }
 
   async editar(id: string, produto: Produto): Promise<Produto> {

@@ -6,7 +6,7 @@ export interface Usuario {
   id: string;
   nome: string;
   email: string;
-  carrinho: Carrinho;
+  carrinho: Carrinho[];
   dataCriacao: Date;
 }
 

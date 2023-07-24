@@ -67,21 +67,6 @@ export class UsuariosService {
     return usuario.save();
   }
 
-  async removerProdutoDoCarrinho(
-    usuarioId: string,
-    produtoId: string,
-  ): Promise<Usuario> {
-    const usuario = await this.usuarioModel.findById(usuarioId).exec();
-    if (!usuario) {
-      throw new NotFoundException('Usuário não encontrado');
-    }
-
-    usuario.carrinho = usuario.carrinho.filter(
-      (item) => item.produtoId !== produtoId,
-    );
-    return usuario.save();
-  }
-
   private gerarIdUsuario(nome: string): string {
     const nomeSplit = nome.split(' ')[0]; // Pega o primeiro nome
     const randomNumber = Math.floor(Math.random() * 10000); // Gera um número aleatório entre 0 e 9999

@@ -3,7 +3,7 @@ import { Document, model } from 'mongoose';
 
 @Schema()
 export class Carrinho {
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   usuarioId: string;
 
   @Prop({ required: true })

@@ -30,8 +30,9 @@ $ npm install
 ```
 
 Antes de executar o projeto, é necessário configurar algumas variáveis de ambiente no arquivo </p>.ENV, localizado na raiz do projeto. Crie um arquivo .env e adicione as seguintes variáveis:
-
+.
 ```
+PORT=3000
 $ MONGO_URI=mongodb://localhost:27017/enafood-delivery
 ```
 Certifique-se de ajustar a URI do MongoDB conforme sua configuração.

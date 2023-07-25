@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import mongoConfig from '../mongo.config';
 import { CarrinhoModule } from './carrinho/carrinho.module';
 import { ValidationPipe } from './common/validation/pipes/validation.pipe';
 import { ProdutosModule } from './produtos/produtos.module';
@@ -12,7 +11,7 @@ import { UsuariosModule } from './usuarios/usuario.module';
   imports: [
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri: process.env.MONGO_URI || mongoConfig.uri,
+        uri: process.env.MONGO_URI,
       }),
     }),
     UsuariosModule,

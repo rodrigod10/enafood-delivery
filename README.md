@@ -73,6 +73,21 @@ GET /carrinho/:usuarioId: Obter o carrinho de um usuário pelo seu ID.
 DELETE /carrinho/:usuarioId/:produtoId: Remover um produto do carrinho de um usuário pelo seu ID.
 
 ## Melhorias Futuras
+Corrigir bug de atualizar usuário
+Corrigir a implementação para que o carrinho do usuário atualize junho com o carrinho
+Implementar teste unitarios para os services utilizando JEST,
+Implementar teste de Integração da Controller utilizando o SUPER TEST do JEST
+
+## Melhorias Sugeridas
+Para atender a faze 4 do Enafood Delivery:
+  dividir em 3 micro-serviço uma para usuarios,produtos e carrinho, alem de aplicar algum designer pattener afim de melhorar sua escalabilidade 
+  sugestão de pattener DDD (Domain-Driven Design) dividindo em aplicação onde teremos os serviços rest separados CRUD utilizando de DTO, class-validation e controller
+  na camada de dominio teremos a logica utilizando-se de use-cases separados, para valer do principio de responsablidade unica e a camada de infra onde teremos os repositorys.
+  não esquecendo de aplicar factorys para os usecases, alem de CIRCUIT BREAKER nos repositoris utilzando o Opposition
+  Apartir dai aplicar arquitetura hexagonal usando-se de ports na camada de domino, criar sua factory, junto a factory do usecase na camada de infra e adapter para "subistuir" os repositorys
+  se for um serviço que for prover o backend para mobile implementar lazyInstace e LazyResolve que fara um carregamento por modulos.
+  implementar cache utilzando o cache-managen./
+com essas melhoria a aplicação ficara robusta e bastante escalavio para atender a alta demanda do projeto.
 
 ## Licença
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo [MIT licensed](LICENSE). para obter mais detalhes.
